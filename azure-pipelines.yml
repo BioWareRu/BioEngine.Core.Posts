@@ -21,19 +21,28 @@ steps:
     - task: DotNetCoreCLI@2
       inputs:
           command: custom
-          custom: publish
-          publishWebProjects: false
-          zipAfterPublish: false
-          modifyOutputPath: false
-          arguments: '--no-restore -c Release --output ./publish'
+          custom: build
+          arguments: '--no-restore -c Release'
           projects: '**/*.csproj'
 
-    - task: Docker@2
-      displayName: 'build and push image'
+    - task: DotNetCoreCLI@2
       inputs:
-          containerRegistry: 'BioWareRU DockerHub'
-          repository: 'biowareru/bioengine-brc-api'
-          command: 'buildAndPush'
-          Dockerfile: 'src/BioEngine.BRC.API/Dockerfile'
-          buildContext: './publish'
-          tags: '$(Version)'
+          command: pack
+          nobuild: true
+          configuration: 'Release'
+          versioningScheme: byEnvVar
+          versionEnvVar: 'Version'
+          verbosityPack: 'minimal'
+          packDirectory: '$(build.artifactStagingDirectory)'
+
+    - task: DotNetCoreCLI@2
+      inputs:
+          command: push
+          nuGetFeedType: 'internal'
+          publishVstsFeed: 'BioEngine'
+          versioningScheme: byEnvVar
+          versionEnvVar: 'Version'
+    - task: PublishPipelineArtifact@0
+      inputs:
+          artifactName: 'packages'
+          targetPath: '$(Build.ArtifactStagingDirectory)'

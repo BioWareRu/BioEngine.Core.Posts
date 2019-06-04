@@ -1,0 +1,39 @@
+pool:
+    vmImage: 'Ubuntu 16.04'
+
+variables:
+    Version: '3.0.$(Build.BuildId)'
+
+steps:
+    - task: UseDotNet@2
+      inputs:
+          packageType: sdk
+          version: 3.0.100-preview5-011568
+          includePreviewVersions: true
+    - task: DotNetCoreCLI@2
+      inputs:
+          command: restore
+          projects: '**/*.csproj'
+          feedsToUse: 'select'
+          verbosityRestore: 'minimal'
+          vstsFeed: 'BioEngine'
+
+    - task: DotNetCoreCLI@2
+      inputs:
+          command: custom
+          custom: publish
+          publishWebProjects: false
+          zipAfterPublish: false
+          modifyOutputPath: false
+          arguments: '--no-restore -c Release --output ./publish'
+          projects: '**/*.csproj'
+
+    - task: Docker@2
+      displayName: 'build and push image'
+      inputs:
+          containerRegistry: 'BioWareRU DockerHub'
+          repository: 'biowareru/bioengine-brc-api'
+          command: 'buildAndPush'
+          Dockerfile: 'src/BioEngine.BRC.API/Dockerfile'
+          buildContext: './publish'
+          tags: '$(Version)'

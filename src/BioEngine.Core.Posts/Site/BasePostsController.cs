@@ -5,6 +5,7 @@ using BioEngine.Core.Abstractions;
 using BioEngine.Core.Comments;
 using BioEngine.Core.Entities;
 using BioEngine.Core.Entities.Blocks;
+using BioEngine.Core.Extensions;
 using BioEngine.Core.Posts.Db;
 using BioEngine.Core.Posts.Entities;
 using BioEngine.Core.Repository;
@@ -65,18 +66,15 @@ namespace BioEngine.Core.Posts.Site
             var titles = tagNames.Split("+").Select(t => t.ToLowerInvariant()).ToArray();
 
             var tags = await TagsRepository.GetAllAsync(q => q.Where(t => titles.Contains(t.Title.ToLower())));
-            if (!tags.Any())
+            if (!tags.items.Any())
             {
                 return NotFound();
             }
 
-            var context = GetQueryContext(page);
-            context.SetTags(tags);
-
             var (items, itemsCount) =
-                await Repository.GetAllAsync(context, entities => entities.Where(e => e.IsPublished));
+                await Repository.GetAllAsync(entities => entities.WithTags(tags.items).Where(e => e.IsPublished));
             return View("List", new ListViewModel<Post>(GetPageContext(), items,
-                itemsCount, Page, ItemsPerPage) {Tags = tags});
+                itemsCount, Page, ItemsPerPage) {Tags = tags.items});
         }
 
         public virtual async Task<IActionResult> RssAsync()
@@ -89,9 +87,7 @@ namespace BioEngine.Core.Posts.Site
                 Copyright = $"(c) {Site.Title}"
             };
 
-            var context = GetQueryContext();
-
-            var posts = await Repository.GetAllAsync(context,entities => entities.Where(e => e.IsPublished));
+            var posts = await Repository.GetAllAsync(entities => ConfigureQuery(entities.Where(e => e.IsPublished)));
             var mostRecentPubDate = DateTime.MinValue;
             var commentsData =
                 await _commentsProvider.GetCommentsDataAsync(posts.items.Select(p => p as ContentItem).ToArray());

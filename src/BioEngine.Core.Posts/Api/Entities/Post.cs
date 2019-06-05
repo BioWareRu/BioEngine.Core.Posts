@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BioEngine.Core.Abstractions;
 using BioEngine.Core.API.Entities;
 using BioEngine.Core.API.Models;
-using BioEngine.Core.Users;
 
 namespace BioEngine.Core.Posts.Api.Entities
 {

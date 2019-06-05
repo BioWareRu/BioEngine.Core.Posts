@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BioEngine.Core.Abstractions;
 using BioEngine.Core.API;
 using BioEngine.Core.API.Entities;
 using BioEngine.Core.DB;
@@ -9,7 +10,6 @@ using BioEngine.Core.Entities;
 using BioEngine.Core.Posts.Db;
 using BioEngine.Core.Posts.Entities;
 using BioEngine.Core.Repository;
-using BioEngine.Core.Users;
 using BioEngine.Core.Web;
 using Microsoft.AspNetCore.Mvc;
 

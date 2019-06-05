@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using BioEngine.Core.Abstractions;
-using BioEngine.Core.DB.Queries;
 using BioEngine.Core.Entities;
-using BioEngine.Core.Extensions;
 using BioEngine.Core.Posts.Entities;
 using BioEngine.Core.Repository;
-using BioEngine.Core.Users;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,27 +23,6 @@ namespace BioEngine.Core.Posts.Db
             sectionsRepository, userDataProvider)
         {
             _tagsRepository = tagsRepository;
-        }
-
-        protected override IQueryable<Post> ApplyContext(IQueryable<Post> query,
-            QueryContext<Post>? queryContext)
-        {
-            if (queryContext != null && queryContext.TagIds.Any())
-            {
-                // https://github.com/aspnet/EntityFrameworkCore/issues/6812
-                Expression<Func<Post, bool>> ex = null;
-                foreach (var tagId in queryContext.TagIds)
-                {
-                    ex = ex == null ? post => post.TagIds.Contains(tagId) : ex.And(post => post.TagIds.Contains(tagId));
-                }
-
-                if (ex != null)
-                {
-                    query = query.Where(ex);
-                }
-            }
-
-            return base.ApplyContext(query, queryContext);
         }
 
         protected override async Task AfterLoadAsync(Post[] entities)

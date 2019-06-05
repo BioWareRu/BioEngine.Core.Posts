@@ -11,7 +11,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace BioEngine.Core.Posts
 {
-    public class PostsModule : BioEngineModule
+    public class PostsModule : BaseBioEngineModule
     {
         public override void ConfigureServices(IServiceCollection services, IConfiguration configuration,
             IHostEnvironment environment)

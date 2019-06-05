@@ -7,13 +7,13 @@ using BioEngine.Core.API;
 using BioEngine.Core.API.Entities;
 using BioEngine.Core.DB;
 using BioEngine.Core.Entities;
-using BioEngine.Core.Posts.Db;
-using BioEngine.Core.Posts.Entities;
 using BioEngine.Core.Repository;
 using BioEngine.Core.Web;
+using BioEngine.Posts.Db;
+using BioEngine.Posts.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BioEngine.Core.Posts.Api
+namespace BioEngine.Posts.Api
 {
     public abstract class
         ApiPostsController : ContentEntityController<Post, PostsRepository, Entities.Post, Entities.PostRequestItem>

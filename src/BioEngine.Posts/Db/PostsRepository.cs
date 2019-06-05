@@ -4,12 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using BioEngine.Core.Abstractions;
 using BioEngine.Core.Entities;
-using BioEngine.Core.Posts.Entities;
 using BioEngine.Core.Repository;
+using BioEngine.Posts.Entities;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 
-namespace BioEngine.Core.Posts.Db
+namespace BioEngine.Posts.Db
 {
     [UsedImplicitly]
     public class PostsRepository : ContentItemRepository<Post>

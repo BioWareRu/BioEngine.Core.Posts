@@ -6,17 +6,17 @@ using BioEngine.Core.Comments;
 using BioEngine.Core.Entities;
 using BioEngine.Core.Entities.Blocks;
 using BioEngine.Core.Extensions;
-using BioEngine.Core.Posts.Db;
-using BioEngine.Core.Posts.Entities;
 using BioEngine.Core.Repository;
 using BioEngine.Core.Routing;
 using BioEngine.Core.Site;
 using BioEngine.Core.Site.Model;
 using BioEngine.Core.Web;
+using BioEngine.Posts.Db;
+using BioEngine.Posts.Entities;
 using Microsoft.AspNetCore.Mvc;
 using WilderMinds.RssSyndication;
 
-namespace BioEngine.Core.Posts.Site
+namespace BioEngine.Posts.Site
 {
     public abstract class BasePostsController : SiteController<Post, PostsRepository>
     {

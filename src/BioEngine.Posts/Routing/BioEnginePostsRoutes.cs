@@ -1,4 +1,4 @@
-namespace BioEngine.Core.Posts.Routing
+namespace BioEngine.Posts.Routing
 {
     public static class BioEnginePostsRoutes
     {

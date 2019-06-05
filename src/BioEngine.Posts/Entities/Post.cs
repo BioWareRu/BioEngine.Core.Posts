@@ -2,9 +2,9 @@
 using BioEngine.Core.Abstractions;
 using BioEngine.Core.DB;
 using BioEngine.Core.Entities;
-using BioEngine.Core.Posts.Routing;
+using BioEngine.Posts.Routing;
 
-namespace BioEngine.Core.Posts.Entities
+namespace BioEngine.Posts.Entities
 {
     [TypedEntity("post")]
     public class Post : ContentItem<PostData>

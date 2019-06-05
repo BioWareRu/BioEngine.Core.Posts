@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BioEngine.Core.Abstractions;
-using BioEngine.Core.Posts.Entities;
 using BioEngine.Core.Site.Sitemaps;
+using BioEngine.Posts.Entities;
 using cloudscribe.Web.SiteMap;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace BioEngine.Core.Posts.SiteMaps
+namespace BioEngine.Posts.SiteMaps
 {
     public class PostsSiteMapNodeService : BaseSiteMapNodeService<Post>
     {

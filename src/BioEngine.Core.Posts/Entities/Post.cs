@@ -2,7 +2,7 @@
 using BioEngine.Core.Abstractions;
 using BioEngine.Core.DB;
 using BioEngine.Core.Entities;
-using BioEngine.Core.Routing;
+using BioEngine.Core.Posts.Routing;
 
 namespace BioEngine.Core.Posts.Entities
 {
@@ -11,7 +11,7 @@ namespace BioEngine.Core.Posts.Entities
     {
         public bool IsPinned { get; set; } = false;
         public override string TypeTitle { get; } = "Пост";
-        [NotMapped] public override string PublicRouteName { get; set; } = BioEngineCoreRoutes.Post;
+        [NotMapped] public override string PublicRouteName { get; set; } = BioEnginePostsRoutes.Post;
     }
 
     public class PostData : ITypedData

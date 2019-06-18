@@ -5,7 +5,6 @@ using BioEngine.Core.Abstractions;
 using BioEngine.Core.Comments;
 using BioEngine.Core.Entities;
 using BioEngine.Core.Entities.Blocks;
-using BioEngine.Core.Extensions;
 using BioEngine.Core.Repository;
 using BioEngine.Core.Routing;
 using BioEngine.Core.Site;

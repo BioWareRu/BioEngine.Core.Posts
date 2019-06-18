@@ -60,7 +60,7 @@ namespace BioEngine.Posts.Api
         }
 
         [HttpGet("{postId}/versions/{versionId}")]
-        public async Task<ActionResult<Entities.Post>> GetVersionsAsync(Guid postId, Guid versionId)
+        public async Task<ActionResult<Entities.Post>> GetVersionAsync(Guid postId, Guid versionId)
         {
             var version = await Repository.GetVersionAsync(postId, versionId);
             if (version == null)

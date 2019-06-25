@@ -9,7 +9,6 @@ namespace BioEngine.Posts.Entities
     [TypedEntity("post")]
     public class Post : ContentItem<PostData>
     {
-        public bool IsPinned { get; set; } = false;
         public override string TypeTitle { get; } = "Пост";
         [NotMapped] public override string PublicRouteName { get; set; } = BioEnginePostsRoutes.Post;
     }

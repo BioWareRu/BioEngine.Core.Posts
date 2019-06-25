@@ -34,7 +34,6 @@ namespace BioEngine.Posts.Api.Entities
     {
         public IUser Author { get; set; }
         public int AuthorId { get; set; }
-        public bool IsPinned { get; set; }
 
         protected override async Task ParseEntityAsync(Posts.Entities.Post entity)
         {
@@ -44,7 +43,6 @@ namespace BioEngine.Posts.Api.Entities
                 : new List<ContentBlock>();
             AuthorId = entity.AuthorId;
             Author = entity.Author;
-            IsPinned = entity.IsPinned;
         }
 
 

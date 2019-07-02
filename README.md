@@ -1,3 +1,5 @@
+# This repo is merged to https://github.com/BioWareRu/BioEngine.Core
+
 # Модуль Posts
 
 Реализация контентной сущности `Пост` для BioEngine. Подходит для блогов, новостных лент.
